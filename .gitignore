@@ -1,0 +1,38 @@
+# Ignore local reference assets
+reference/
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Node / tooling caches
+node_modules/
+.npm/
+.pnpm-store/
+.vscode/**/history/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# Build artifacts (generic web projects)
+dist/
+build/
+.out/
+.next/
+
+# Python caches
+__pycache__/
+*.py[cod]
+
+# IDE/editor settings
+.vscode/
+.idea/
+*.code-workspace
+
+# Misc
+*.local
+.env
+.env.*
