@@ -1,118 +1,156 @@
-:root {
-	--bg: #0f1115;
-	--bg-panel: #161a22;
-	--bg-elev: #1d2330;
-	--text: #e6e6e6;
-	--muted: #9aa3b2;
-	--accent: #6aa9ff;
-	--accent-2: #79d2a6;
-	--border: #2a3140;
-	--danger: #ff6b6b;
+/* Spacer below Three.js canvas for scroll buffer */
+.canvas-spacer {
+  height: 80px;
+  width: 100%;
+  display: block;
 }
+/* Import Google Fonts - this loads the Roboto font family from Google's servers */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
 
-* { box-sizing: border-box; }
-html, body { height: 100%; }
+/* Style the entire body of the webpage */
 body {
-	margin: 0;
-	font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
-	color: var(--text);
-	background: var(--bg);
+  font-family: 'Roboto', sans-serif;  /* Set the font to Roboto, with sans-serif as backup */
+  background-color: #0b0b0b;          /* Match main page dark background */
+  color: #eaeaea;                     /* Light text on dark background */
+  margin: 0;                          /* Remove default spacing around the body */
+  padding: 0;                         /* Remove default internal spacing */
+  overflow-x: hidden;                 /* Prevent horizontal scrollbar */
 }
 
-.app-header {
-	display: grid;
-	grid-template-columns: auto 1fr auto;
-	align-items: center;
-	gap: 12px;
-	padding: 10px 12px;
-	border-bottom: 1px solid var(--border);
-	background: linear-gradient(180deg, #151a23, #10141b 60%);
-	position: sticky;
-	top: 0;
-	z-index: 10;
-}
-.title { font-size: 16px; font-weight: 600; margin: 0; }
-.toggle-btn, .icon-btn {
-	background: var(--bg-elev);
-	color: var(--text);
-	border: 1px solid var(--border);
-	border-radius: 8px;
-	padding: 6px 10px;
-	cursor: pointer;
-}
-.toggle-btn:hover, .icon-btn:hover { border-color: var(--accent); }
-
-.app-main {
-	display: grid;
-	grid-template-columns: 300px 1fr;
-	height: calc(100dvh - 56px);
+/* Keep only minimal base styles for the sketch page */
+html, body { height: 100%; }
+main {
+  max-width: none;
+  margin: 0;
+  padding: 0;
 }
 
-/* Control panel */
-.control-panel {
-	background: var(--bg-panel);
-	border-right: 1px solid var(--border);
-	overflow: hidden auto;
-	transition: width 220ms ease, transform 220ms ease;
-}
-.control-panel.collapsed {
-	width: 0 !important;
-	transform: translateX(-100%);
-}
-.panel-header { display: flex; align-items: center; justify-content: space-between; padding: 12px; position: sticky; top: 0; background: var(--bg-panel); z-index: 1; border-bottom: 1px solid var(--border); }
-.panel-header h2 { font-size: 14px; margin: 0; color: var(--muted); }
-.panel-header .icon-btn { line-height: 1; padding: 4px 8px; }
-
-.controls { display: grid; gap: 14px; padding: 12px; }
-.control-section { border: 1px solid var(--border); border-radius: 10px; padding: 10px; }
-.control-section legend { color: var(--muted); padding: 0 6px; font-size: 12px; }
-.control-group { display: grid; gap: 8px; }
-.control-group.row { grid-auto-flow: column; grid-auto-columns: max-content; align-items: center; gap: 10px; }
-.control-group label { color: var(--muted); font-size: 12px; }
-.control-group input[type="range"] { width: 100%; }
-.control-group input, .control-group select {
-	background: var(--bg-elev);
-	color: var(--text);
-	border: 1px solid var(--border);
-	border-radius: 8px;
-	padding: 6px 10px;
-}
-.control-group output { color: var(--accent-2); font-variant-numeric: tabular-nums; }
-
-.primary-btn {
-	background: linear-gradient(180deg, #2a4bff, #1e37c7);
-	color: white;
-	border: 1px solid #2a4bff;
-	border-radius: 8px;
-	padding: 8px 12px;
-	cursor: pointer;
-}
-.primary-btn:hover { filter: brightness(1.05); }
-
-.status { margin-top: 8px; font-size: 12px; color: var(--muted); line-height: 1.4; white-space: pre-line; }
-.status.error { color: var(--danger); }
-
-/* Simple switch */
-.switch { position: relative; display: inline-block; width: 42px; height: 24px; }
-.switch input { opacity: 0; width: 0; height: 0; }
-.switch .slider { position: absolute; cursor: pointer; inset: 0; background: #2a3140; border-radius: 40px; transition: 0.2s; }
-.switch .slider:before { content: ""; position: absolute; height: 18px; width: 18px; left: 3px; top: 3px; background: #cfd6e4; border-radius: 50%; transition: 0.2s; }
-.switch input:checked + .slider { background: #2a4bff55; box-shadow: inset 0 0 0 1px var(--accent); }
-.switch input:checked + .slider:before { transform: translateX(18px); background: var(--accent); }
-
-/* Viewer */
-.viewer {
-	position: relative;
-	background: radial-gradient(600px 60% at 40% 20%, #162036, transparent 60%), var(--bg);
-}
-#viewerCanvas { width: 100%; height: 100%; display: block; }
-.viewer-placeholder {
-	position: absolute; inset: 0; display: grid; place-items: center; color: var(--muted);
-	pointer-events: none; text-transform: uppercase; letter-spacing: 1px; font-size: 12px;
+/* Generic frame for embeds and canvases */
+.embed-frame {
+  position: relative;
+  margin: 24px auto;
+  width: min(95vw, 1200px);
+  height: clamp(520px, 78vh, 900px);
+  background: #121212;
+  border: 1px solid #222;
+  border-radius: 12px;
+  overflow: hidden;
 }
 
-/* Responsive: collapse panel under 720px */
-@media (max-width: 720px) {
-	.app-main { grid-template-columns: 0 1fr; }
-	.control-panel { position: absolute; width: 280px; height: calc(100dvh - 56px); z-index: 5; box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
+/* Add extra space after the first canvas section before the second begins */
+#canvas-container-1 {
+  margin-bottom: 80px; /* increase gap to next section */
+}
+
+/* Add extra space after the second canvas before the Three.js section title */
+#canvas-container-2 {
+  margin-bottom: 80px;
+}
+
+/* Ensure p5 canvas sits nicely as a block element */
+/* Fillers inside frames */
+.embed-fill {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+#canvas-container-2 canvas,
+#threejs-container canvas {
+  position: absolute;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+/* Restore section title styling used by the page */
+.section-title {
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-top: 40px;
+  margin-bottom: 12px;
+  font-size: 14px;
+  width: min(95vw, 1200px);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Restore paragraph styling used by the page */
+p {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 24px;
+  color: inherit;            /* use body light text color */
+  width: min(95vw, 1200px);  /* align with canvas width */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Controls panel styling */
+.controls {
+  width: min(95vw, 1200px);
+  margin: 0 auto 12px auto;
+  padding: 12px 14px;
+  background: #121212;
+  border: 1px solid #222;
+  border-radius: 10px;
+  color: #eaeaea;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 10px 16px;
+}
+
+.controls label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.controls input[type="range"] {
+  flex: 1;
+}
+
+/* Compact layout for NPN controls */
+#controls-2.controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  grid-template-columns: none;
+  padding: 6px 10px;
+}
+
+#controls-2.controls button {
+  width: auto;
+  padding: 6px 12px;
+  font-size: 12px;
+  line-height: 1.2;
+  border: 1px solid #ddd;
+  background: #ffffff;
+  color: #000000;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#controls-2.controls button:hover {
+  border-color: #bbb;
+}
+
+/* Force all Three.js checkboxes to stay in a single row */
+#controls-3.controls {
+  display: flex;
+  flex-wrap: nowrap;   /* keep one row */
+  align-items: center;
+  gap: 12px;           /* spacing between items */
+  overflow-x: auto;    /* safe on small screens */
+}
+
+
+#threejs-container {
+  margin-bottom: 50px;
+  margin-bottom: 80px; /* extra space below canvas for scroll buffer */
 }

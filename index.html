@@ -1,28 +1,76 @@
 <!DOCTYPE html>
+<!-- This tells the browser this is an HTML5 document - always include this at the top -->
 <html lang="en">
+<!-- The html tag is the root element that contains everything on the page -->
+<!-- lang="en" tells the browser this page is in English -->
+
 <head>
+  <!-- The head section contains information about the page, not visible content -->
+
+
+  <!-- Three.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+
+  
   <meta charset="UTF-8">
-  <title>ShapeDiver Box Example</title>
-  <style>
-    body {
-      margin: 0;
-      background: #f5f5f5;
-      font-family: sans-serif;
-    }
-    .viewer-container {
-      width: 100%;
-      height: 100vh;
-    }
-  </style>
+  <!-- This sets the character encoding to UTF-8, which supports special characters and emojis -->
+  
+  <title>Module 1</title>
+  <!-- This is the title that appears in the browser tab and bookmarks -->
+  
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+  <!-- This loads the Roboto font from Google Fonts for use on our page -->
+  
+  <link rel="stylesheet" href="2-web-interops/style.css">
+  <!-- This links our CSS file to style the page - the href points to our style.css file -->
 </head>
+
 <body>
-  <div class="viewer-container">
+  <!-- The body contains all the visible content that users will see on the page -->
+
+  <main>
+    <!-- The main tag contains the primary content of the page -->
     
-<iframe id="sdv-iframe" width="100%" height="100%" src="https://www.shapediver.com/app/iframe/box-3cd948a1ff?primaryColor=%23317DD4&secondaryColor=%23393A45&surfaceColor=%23FFFFFF&backgroundColor=%23F8F8F8&showControls=1&showZoomButton=1&showFullscreenButton=1&showToggleControlsButton=1&parametersDisable=1&parametersValidation=0" referrerpolicy="origin" allowfullscreen style="overflow-x: hidden; overflow-y: hidden; border-width: 0;">
-    <p>Your browser does not support iframes.</p>
-</iframe>
+    
+
+
+    <!-- ------------------------------------------------------------ -->
+
+    <!-- ADD A NEW 'CANVAS CONTAINER' FOR EACH NEW P5.JS SKETCH (THE ORDER IS DEFINED BY THE CONTAINER NUMBER BELOW + THE MOST RECENT SKETCH SHOULD BE AT THE TOP) -->
+
+  <!-- Section: ShapeDiver embed -->
+  <div class="section-title">ShapeDiver — Parametric Box</div>
+  <p>Interactive parametric model embedded via ShapeDiver. Use the controls inside the viewer to adjust parameters; the model fills the frame and updates in real time.</p>
+  <!-- ShapeDiver embed (fills its frame) -->
+  <div id="canvas-container-1" class="embed-frame">
+    <iframe class="embed-fill" src="https://appbuilder.shapediver.com/v1/main/latest/?slug=box-3cd948a1ff" referrerpolicy="origin" allowfullscreen></iframe>
   </div>
+  
+  
+
+  <!-- Section: Three.js JSON demo -->
+  <div class="section-title">Three.js — JSON Model Viewer</div>
+  <p>This viewer loads a Three.js JSON scene (<code>2-web-interops/triceratops.json</code>) using <code>THREE.ObjectLoader</code>. Orbit with the mouse, pan with right-drag, and scroll to zoom. A subtle grid and lights provide orientation.</p>
+  <div id="threejs-container" class="embed-frame"></div>
+  <div class="canvas-spacer"></div>
+    
+
+  </main>
+  <!-- End of main content area -->
+  
+
+  <!-- ------------------------------------------------------------ -->
+
+  <!-- LOAD EACH NEW P5.JS SCRIPT HERE -->
+
+
+  <script src="2-web-interops/script.js"></script>
+  
+  <script src="2-web-interops/threejs-triceratops.js"></script>
+
+
 </body>
+<!-- End of body - all visible content goes above this line -->
 </html>
-
-
+<!-- End of HTML document -->
