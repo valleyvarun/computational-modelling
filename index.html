@@ -12,6 +12,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 
+  <!-- MapLibre GL (Mapbox GL JS compatible, no token needed) -->
+  <link href="https://cdn.jsdelivr.net/npm/maplibre-gl@3.6.1/dist/maplibre-gl.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/maplibre-gl@3.6.1/dist/maplibre-gl.js"></script>
+
   
   <meta charset="UTF-8">
   <!-- This sets the character encoding to UTF-8, which supports special characters and emojis -->
@@ -54,6 +58,11 @@
   <p>This viewer loads a Three.js JSON scene (<code>2-web-interops/triceratops.json</code>) using <code>THREE.ObjectLoader</code>. Orbit with the mouse, pan with right-drag, and scroll to zoom. A subtle grid and lights provide orientation.</p>
   <div id="threejs-container" class="embed-frame"></div>
   <div class="canvas-spacer"></div>
+
+  <!-- Section: Map (GeoJSON extrusions) -->
+  <div class="section-title">Map — 3D Extrusions (GeoJSON)</div>
+  <p>This map renders polygons from <code>2-web-interops/hia-mapbox.geojson</code> as 3D extrusions using the <code>height</code> property. Styled with a dark palette and interactive tilt/rotate controls.</p>
+  <div id="mapbox-container" class="embed-frame"></div>
     
 
   </main>
@@ -62,12 +71,11 @@
 
   <!-- ------------------------------------------------------------ -->
 
-  <!-- LOAD EACH NEW P5.JS SCRIPT HERE -->
-
 
   <script src="2-web-interops/script.js"></script>
   
   <script src="2-web-interops/threejs-triceratops.js"></script>
+  <script src="2-web-interops/mapbox.js"></script>
 
 
 </body>

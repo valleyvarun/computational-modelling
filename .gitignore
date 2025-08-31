@@ -1,6 +1,9 @@
 # Ignore local reference assets
 reference/
 
+# Ignore Rhino files folder
+rhino-files/
+
 # OS junk
 .DS_Store
 Thumbs.db
